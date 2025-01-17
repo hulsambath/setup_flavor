@@ -1,51 +1,36 @@
-# setup_flavor
+## To setup flavor
+### 1. Update build.gradle in /android/app/
 
-### Flutter Launcher Icons
+```gradle
+    flavorDimensions "vendorapp", "flavor"
+    productFlavors {
+        hangmeas {
+            dimension "vendorapp"
+            applicationId "com.centralmarket.hangmeas"
+        }
 
-## Add flutter launcher icons for new flavor [![flutter_launcher_icons](https://img.shields.io/badge/Flutter%20Community-flutter__launcher__icons-blue)](https://pub.dev/packages/flutter_launcher_icons)
-* Create a new `flutter_launcher_icons-flavor.yaml` file in `app/`
-* In `flutter_launcher_icons-flavor.yaml`:
+        dev {
+            dimension "vendorapp"
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+        }
 
-```yaml
-flutter_icons:
-  android: true
-  ios: true
-  image_path: "assets/dimension/flavor/dimension_icon.png" # example: "assets/hangmeas/staging/hangmeas_icon.png"
-  adaptive_icon_background: "#FFFFFF"
-  adaptive_icon_foreground: "assets/dimension/flavor/dimension_icon.png"
-  min_sdk_android: 21
-
-  flavors:
-    sambathStg:
-      image_path: "assets/dimension/flavor/dimension_icon.png"
-      android: true
-      ios: true
-      web:
-        generate: true
-        image_path: "assets/dimension/flavor/dimension_icon.png"
-        background_color: "#FFFFFF"
-        theme_color: "#FFFFFF"  # custom the flavor color
-      windows:
-        generate: true
-        image_path: "assets/dimension/staging/dimension_icon.png"
-      macos:
-        generate: true
-        image_path: "assets/dimension/staging/dimension_icon.png"
+        stg {
+            dimension "vendorapp"
+            applicationIdSuffix ".stg"
+            versionNameSuffix "-stg"
+        }
+    }
 ```
-* After create `flutter_launcher_icons-flavor.yaml`, run the command:
-```bash
-dart run flutter_launcher_icons -f flavor # example: dart run flutter_launcher_icons -f hangmeasStg
-```
-
-
-## Screenshot
-![image](https://github.com/user-attachments/assets/4da08dc9-f6e5-49ab-831c-c6b4cfea8731)
-
-## Demonstration
-|Staging|Dev|
+## Purpose:
+1. Create many similar apps in the only one project
+2. Allows developers to build and manage different versions of every single app from the same codebase, each with distinct behaviors and appearances. Develop app Separately via different environment such as, production, development, staging also.
+3. Allows developers to separate the assets for each flavors, so that when they build app, the excluded assets for other flavor will not be build.
+4. Additionally, flavors enable you to manage different Firebase projects for each flavor, ensuring that each version of the app can have its own database or other backend services. This setup helps in maintaining a clean and organized project structure while allowing for flexibility and customization across various environments or client-specific requirements.
+## Screenshots
+1. 
+![Screenshot 2025-01-09 145649](https://github.com/user-attachments/assets/d1f0702c-4dbc-40bc-b041-0a02075c376c)
+2. When developers setup assets for hangmeasStg only. So when they run or build hangmeasDev, those assets will not be build.
+|staging|dev|
 |-|-|
-|https://github.com/user-attachments/assets/a370094f-b351-4ec2-8816-c241bc538d33|https://github.com/user-attachments/assets/084fad24-13b9-41c2-95a9-f0b9dc5fa1a4|
-
-## Reference (Figma) : 
-
-https://www.figma.com/design/UeBViZFBWnRnxHbw0CYVpT/Hang-meas-App?node-id=0-1&p=f&t=PObcm9wx5kmQeF7p-0
+|![Screenshot_1736410513](https://github.com/user-attachments/assets/08e9a56c-6f28-490e-bbd7-010e776eb98b)|![Screenshot_1736410542](https://github.com/user-attachments/assets/0222beb5-ecb0-4255-8d27-7dedd770d87c)|
