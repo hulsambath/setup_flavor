@@ -7,7 +7,7 @@
         hangmeas {
             dimension "vendorapp"
             applicationId "com.centralmarket.hangmeas"
-            namespace "com.centralmarket.$flavor"
+            namespace "com.centralmarket.hangmeas"
         }
         prod {
             dimension "vendorapp"
